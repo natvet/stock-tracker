@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { AppContext } from './../AppContext';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,10 +37,10 @@ export default function PermanentDrawerLeft() {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button >
+        <ListItem button component={Link} to='/track-new'>
           <ListItemText>Track new company</ListItemText>
         </ListItem>
-        <ListItem button >
+        <ListItem button component={Link} to='/'>
           <ListItemText>Companies</ListItemText>
         </ListItem>
       </List>

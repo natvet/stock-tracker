@@ -15,7 +15,7 @@ const Header = () => {
   const { drawerWidth } = useContext(AppContext)
   const classes = useStyles(drawerWidth)
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="h6">
           Stock Tracker
