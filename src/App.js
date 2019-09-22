@@ -14,10 +14,12 @@ const useStyles = makeStyles({
   }
 });
 
+const tracked = ['MSFT', '300135.SZ']
+
 const App = () => {
   const classes = useStyles();
   return (
-    <AppContext.Provider value={{ drawerWidth: 240 }}>
+    <AppContext.Provider value={{ drawerWidth: 240, tracked }}>
       <Router>
         <div>
           <CssBaseline />
