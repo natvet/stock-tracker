@@ -2,6 +2,9 @@
 
 Simple app that allows fetching and displaying stock market data for companies of choice
 
+[Link to live demo](https://natalia-stock-tracker.surge.sh/)
+
+
 ## Tools
 
 * React 16
