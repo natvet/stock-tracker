@@ -1,6 +1,6 @@
 # stock-tracker
 
-Simple app that allows fetching and displaying stock market data for companies chosen by user
+Simple app that allows fetching and displaying stock market data for companies of choice
 
 ## Tools
 
