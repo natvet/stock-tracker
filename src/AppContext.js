@@ -3,6 +3,7 @@ export const AppContext = createContext(
   {
     drawerWidth: 240,
     tracked: [],
-    onTrackedUpdate: () => {}
+    onTrackedUpdate: () => {},
+    isLoading: false
   }
 );

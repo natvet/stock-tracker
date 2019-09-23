@@ -3,6 +3,7 @@ import { Paper, MenuItem, Popper, TextField, Button, makeStyles } from '@materia
 import { API_URL, API_KEY } from './../constants';
 import { AppContext } from './../AppContext';
 import { withRouter } from "react-router-dom";
+import Loader from './Loader';
 
 const useStyles = makeStyles({
   button: {
@@ -18,7 +19,7 @@ const SearchField = ({ history }) => {
   const [suggestions, setSuggestions] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const [isValueSelected, setIsValueSelected] = useState(false)
-  const { onTrackedUpdate } = useContext(AppContext)
+  const { onTrackedUpdate, isLoading, setIsLoading } = useContext(AppContext)
   const handleInputChange = (e) => {
     if(isValueSelected) setIsValueSelected(false)
     setSearchValue(e.target.value)
@@ -33,11 +34,13 @@ const SearchField = ({ history }) => {
   }
   useEffect(() => {
     if(searchValue && !isValueSelected) {
+      setIsLoading(true)
       fetch(`${API_URL}?function=SYMBOL_SEARCH&keywords=${searchValue}&apikey=${API_KEY}`)
       .then(response => response.json())
       .then(response => {
         const suggestions = response.bestMatches && response.bestMatches.map(item => item['1. symbol'])
         setSuggestions(suggestions)
+        setIsLoading(false)
       })
     }
   }, [searchValue])
@@ -62,8 +65,8 @@ const SearchField = ({ history }) => {
           square
           style={{ width: anchorEl ? anchorEl.clientWidth : undefined }}
         >
-          {suggestions.length
-            ? suggestions.map(suggestion => (
+          {isLoading && <Loader />}
+          {!!suggestions.length &&  suggestions.map(suggestion => (
               <MenuItem
                 component="div"
                 onClick={() => handleValueSelect(suggestion)}
@@ -72,8 +75,8 @@ const SearchField = ({ history }) => {
                 {suggestion}
               </MenuItem>
             ))
-            : <MenuItem>No results</MenuItem>
           }
+          {!isLoading && !suggestions.length && <MenuItem>No results</MenuItem>}
         </Paper>
       </Popper>
       <Button

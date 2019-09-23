@@ -22,6 +22,7 @@ const getInitialTracked = () => {
 const App = () => {
   const classes = useStyles();
   const [tracked, setTracked] = useState(getInitialTracked())
+  const [isLoading, setIsLoading] = useState(false)
   const onTrackedUpdate = (newSymbol) => {
     const updatedTracked = tracked.includes(newSymbol) ? tracked : [...tracked, newSymbol]
     setTracked(updatedTracked)
@@ -32,7 +33,9 @@ const App = () => {
   const contextValue = {
     drawerWidth: 240,
     tracked,
-    onTrackedUpdate
+    onTrackedUpdate,
+    isLoading,
+    setIsLoading: (bool) => setIsLoading(bool)
   }
   return (
     <AppContext.Provider value={contextValue}>
