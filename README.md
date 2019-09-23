@@ -1,5 +1,7 @@
 # stock-tracker
 
+Simple app that allows fetching and displaying stock market data for companies chosen by user
+
 ## Tools
 
 * React 16
