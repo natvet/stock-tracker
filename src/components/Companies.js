@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AppContext } from './../AppContext';
 import { Paper, Typography, makeStyles } from '@material-ui/core';
-import { API_URL, LOGO_API_URL, API_KEY } from './../constants';
+import { API_URL, API_KEY } from './../constants';
 import SingleCompany from './SingleCompany';
 import { Link } from 'react-router-dom';
 
@@ -51,11 +51,11 @@ const Companies = () => {
       const quoteData = await Promise.all(quotePromises)
       const searchData = await Promise.all(searchPromises)
       const data = quoteData.map((item, i) => ({...item, ...searchData[i]}))
-
       setData(data)
     }
     fetchData()
   }, [])
+
   return (
     <Paper className={classes.paper}>
       <Typography variant="h6">Companies</Typography>

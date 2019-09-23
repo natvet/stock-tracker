@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Companies from './components/Companies';
@@ -14,12 +14,28 @@ const useStyles = makeStyles({
   }
 });
 
-const tracked = ['MSFT', '300135.SZ']
+const getInitialTracked = () => {
+  const localTracked = localStorage.getItem('tracked')
+  return localTracked ? JSON.parse(localTracked) : []
+}
 
 const App = () => {
   const classes = useStyles();
+  const [tracked, setTracked] = useState(getInitialTracked())
+  const onTrackedUpdate = (newSymbol) => {
+    const updatedTracked = tracked.includes(newSymbol) ? tracked : [...tracked, newSymbol]
+    setTracked(updatedTracked)
+  }
+  useEffect(() => {
+    localStorage.setItem('tracked', JSON.stringify(tracked));
+  }, [tracked])
+  const contextValue = {
+    drawerWidth: 240,
+    tracked,
+    onTrackedUpdate
+  }
   return (
-    <AppContext.Provider value={{ drawerWidth: 240, tracked }}>
+    <AppContext.Provider value={contextValue}>
       <Router>
         <div>
           <CssBaseline />
