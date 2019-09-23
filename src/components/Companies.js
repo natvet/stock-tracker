@@ -36,6 +36,7 @@ const Companies = () => {
             closed: data['07. latest trading day']
           }
         })
+        .catch((e) => console.error(e))
       })
       const searchPromises = tracked.map(symbol => {
         const url = `${API_URL}?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${API_KEY}`
@@ -52,6 +53,7 @@ const Companies = () => {
             currency: data['8. currency']
           }
         })
+        .catch((e) => console.error(e))
       })
       const quoteData = await Promise.all(quotePromises)
       const searchData = await Promise.all(searchPromises)

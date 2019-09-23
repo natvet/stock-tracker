@@ -42,6 +42,7 @@ const SearchField = ({ history }) => {
         setSuggestions(suggestions)
         setIsLoading(false)
       })
+      .catch((e) => console.error(e))
     }
   }, [searchValue])
   return (
