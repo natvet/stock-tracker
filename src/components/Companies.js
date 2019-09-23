@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
   paper: {
     padding: '24px'
+  },
+  title: {
+    marginBottom: '12px'
   }
 });
 
@@ -58,7 +61,7 @@ const Companies = () => {
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h6">Companies</Typography>
+      <Typography variant="h6" className={classes.title}>Companies</Typography>
       {data.length
         ? data.map(company => <SingleCompany key={company.symbol} company={company} />)
         : <Typography variant="body1">
