@@ -1,8 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import logoPlaceholder from './../assets/logo-placeholder.jpg';
 
 const useStyles = makeStyles({
+  logo: {
+    height: '80px',
+    marginRight: '12px'
+  },
   singleCompany: {
     padding: '12px 0',
     display: 'flex'
@@ -32,7 +37,7 @@ const SingleCompany = (props) => {
   } = props.company
   return (
     <div className={classes.singleCompany}>
-      <img src="#"/>
+      <img className={classes.logo} src={logoPlaceholder} />
       <div>
         <Typography variant="h6" component="span">{name}</Typography>
         <Typography variant="body1" component="span"> {symbol} </Typography>
